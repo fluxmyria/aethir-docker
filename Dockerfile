@@ -1,14 +1,16 @@
 FROM ubuntu:23.10
 
 WORKDIR /app
-ADD https://aethir-checker-client.s3.ap-southeast-1.amazonaws.com/eu/AethirCheckerClient-linux-cli-installer.tar .
+ADD https://aethir-checker-client-new.s3.ap-southeast-1.amazonaws.com/eu/AethirCheckerCLI-linux-1.0.2.0-eu.tar.gz .
 RUN apt-get update && apt-get upgrade -y
 
 ENV NODE_EMAIL test@test.com
 
-RUN tar -xvf AethirCheckerClient-linux-cli-installer.tar
-RUN ./AethirCheckerCLI-linux-1.0.1.5-eu/AethirChecker 
-#RUN  accept tos & aethir wallet create  pipeneed to grab wallet and email to email address.
+RUN tar -xvf AethirCheckerCLI-linux-1.0.2.0-eu.tar.gz
+RUN touch  /root/.yes_aethir
+RUN ./AethirCheckerCLI-linux-eu/install.sh
+RUN ./AethirCheckerCLI-linux-eu/AethirCheckerCLI
+#RUN ethir wallet create  pipeneed to grab wallet and email to email address.
 
 #Poll for delegation
 
